@@ -1,9 +1,5 @@
 package com.example.passwordtestingiesb
 
-import android.annotation.SuppressLint
-import android.graphics.ColorFilter
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
