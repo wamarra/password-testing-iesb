@@ -17,12 +17,17 @@ object PasswordManager {
             invalidTypes.add(InvalidType.Minimo1Numero)
         }
 
+        if (ValidationsUtils.isContainSpecialCharacter(password).not()) {
+            invalidTypes.add(InvalidType.Minimo1CaractereEspecial)
+        }
 
+        if (password.length > 15 ) {
+            invalidTypes.add(InvalidType.MaiorQue15Caracteres)
+        }
 
         if (invalidTypes.isNotEmpty()) {
             return PasswordStatus.Invalid(invalidTypes)
         }
-
 
         return PasswordStatus.Valid(StrengthLevel.STRONG)
     }
