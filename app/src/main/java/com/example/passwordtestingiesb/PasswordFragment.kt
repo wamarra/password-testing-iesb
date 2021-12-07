@@ -45,6 +45,8 @@ class PasswordFragment : Fragment() {
                 binding.includePassword.numbers.visibility = View.VISIBLE
                 binding.includePassword.charactersImg.visibility = View.VISIBLE
                 binding.includePassword.characters.visibility = View.VISIBLE
+                binding.includePassword.fifteenCharactersImg.visibility = View.VISIBLE
+                binding.includePassword.fifteenCharacters.visibility = View.VISIBLE
 
                 if (result is PasswordStatus.Invalid) {
                     if (!result.type.contains(InvalidType.Minimo8Caracteres)) {
@@ -61,6 +63,11 @@ class PasswordFragment : Fragment() {
                         binding.includePassword.charactersImg.visibility = View.GONE
                         binding.includePassword.characters.visibility = View.GONE
                     }
+
+                    if (!result.type.contains(InvalidType.MaiorQue15Caracteres)) {
+                        binding.includePassword.fifteenCharactersImg.visibility = View.GONE
+                        binding.includePassword.fifteenCharacters.visibility = View.GONE
+                    }
                 } else {
                     binding.includePassword.eightImg.visibility = View.GONE
                     binding.includePassword.eightCharacters.visibility = View.GONE
@@ -68,16 +75,8 @@ class PasswordFragment : Fragment() {
                     binding.includePassword.numbers.visibility = View.GONE
                     binding.includePassword.charactersImg.visibility = View.GONE
                     binding.includePassword.characters.visibility = View.GONE
-
-                    if (password.toString().length >= 8) {
-                        binding.includePassword.strengthLevelTxt.text = "Média"
-                        binding.includePassword.strengthLevelIndicatorMedium.setBackgroundResource(StrengthLevel.MEDIUM.color)
-                        binding.includePassword.strengthLevelIndicatorStrong.setBackgroundResource(StrengthLevel.NONE.color)
-                    }
-                    if (password.toString().length >= 10) {
-                        binding.includePassword.strengthLevelTxt.text = "Forte"
-                        binding.includePassword.strengthLevelIndicatorStrong.setBackgroundResource(StrengthLevel.STRONG.color)
-                    }
+                    binding.includePassword.fifteenCharactersImg.visibility = View.GONE
+                    binding.includePassword.fifteenCharacters.visibility = View.GONE
                 }
 
                 if (password.toString().isEmpty()) {
@@ -89,6 +88,15 @@ class PasswordFragment : Fragment() {
                     binding.includePassword.strengthLevelTxt.text = "Fraca"
                     binding.includePassword.strengthLevelIndicatorWeak.setBackgroundResource(StrengthLevel.WEAK.color)
                     binding.includePassword.strengthLevelIndicatorMedium.setBackgroundResource(StrengthLevel.NONE.color)
+                }
+                if (password.toString().length >= 8) {
+                    binding.includePassword.strengthLevelTxt.text = "Média"
+                    binding.includePassword.strengthLevelIndicatorMedium.setBackgroundResource(StrengthLevel.MEDIUM.color)
+                    binding.includePassword.strengthLevelIndicatorStrong.setBackgroundResource(StrengthLevel.NONE.color)
+                }
+                if (password.toString().length >= 10) {
+                    binding.includePassword.strengthLevelTxt.text = "Forte"
+                    binding.includePassword.strengthLevelIndicatorStrong.setBackgroundResource(StrengthLevel.STRONG.color)
                 }
             }
 
